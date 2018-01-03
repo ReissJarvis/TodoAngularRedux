@@ -9,6 +9,10 @@
   margin: 20px
 }
 
+mat-list-item {
+  transition: background-color 0.5s ease;
+}
+
 .completed {
   background-color: green;
   transition: background-color 0.5s ease;
