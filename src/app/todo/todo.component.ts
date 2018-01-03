@@ -24,4 +24,8 @@ export class TodoComponent implements OnInit {
       this.todos.push({id: this.todos.length + 1 ,message: result})
     });
   }
+
+  deleteTodo(index){
+    this.todos.splice(index, 1)
+  }
 }
