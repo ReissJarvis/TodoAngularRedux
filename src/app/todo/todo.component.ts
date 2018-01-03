@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AddTodoDialogComponent } from '../shared/dialogs/add-todo-dialog/add-todo-dialog.component'
 import { MatDialog } from '@angular/material'
 import { EventService } from '../event.service'
@@ -9,15 +9,11 @@ import { QueueNames } from '../event-queues.constants'
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
 
-  todos: { id: number, message: string, done?: boolean }[]
+  todos: { id: number, message: string, done?: boolean }[] = []
 
   constructor(public dialog: MatDialog, private eventService: EventService) { }
-
-  ngOnInit() {
-    this.todos = []
-  }
 
   openAddTodo(){
     let dialogRef = this.dialog.open(AddTodoDialogComponent);
