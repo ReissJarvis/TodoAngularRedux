@@ -1,0 +1,17 @@
+<mat-card class="card-padding">
+  <mat-card-header>
+    <mat-card-title>Todo List</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let todo of todos">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>{{todo.message}}</h4>
+        <mat-icon>menu</mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+
+
+<button mat-fab class="floating-button" (click)="openAddTodo()"><mat-icon>add</mat-icon></button>
