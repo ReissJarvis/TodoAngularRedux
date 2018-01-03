@@ -5,10 +5,10 @@
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let todo of todos; let i = index" [ngClass]="{ completed: todo.done }">
+      <mat-list-item *ngFor="let todo of todos; let i = index" [ngClass]="{ completed: todo.done }" >
         <mat-icon mat-list-icon>folder</mat-icon>
         <h4 mat-line>{{todo.message}}</h4>
-        <mat-checkbox [(ngModel)]="todo.done"></mat-checkbox>
+        <mat-checkbox [(ngModel)]="todo.done" (change)="checkTodo($event)"></mat-checkbox>
         <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="deleteTodo(i)">

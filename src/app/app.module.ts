@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './shared/material.module';
 import { InfoComponent } from './info/info.component'
+import { EventService } from './event.service'
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { InfoComponent } from './info/info.component'
     MaterialModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
