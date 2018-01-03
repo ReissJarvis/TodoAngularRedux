@@ -1,7 +1,7 @@
 .floating-button {
-  position: absolute;
-  top: calc(100vh - 160px);
-  left: calc(100vw - 220px);
+  position: fixed;
+  bottom: 20px;
+  right:20px;
 }
 
 .card-padding {
