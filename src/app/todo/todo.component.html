@@ -1,6 +1,7 @@
 <mat-card class="card-padding">
   <mat-card-header>
     <mat-card-title>Todo List</mat-card-title>
+    <mat-card-subtitle *ngIf="todos.length > 0">{{getCompletedTodos()}} of {{todos.length}} Completed</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <mat-list>

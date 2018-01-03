@@ -25,6 +25,10 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  getCompletedTodos() {
+    return this.todos.filter(todo => todo.done).length
+  }
+
   deleteTodo(index){
     this.todos.splice(index, 1)
   }
