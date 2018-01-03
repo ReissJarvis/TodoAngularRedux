@@ -47,6 +47,6 @@ export class TodoComponent implements OnInit {
 
   deleteTodo(index){
     this.todos.splice(index, 1)
-    this.eventService.emit(QueueNames.REMOVE_TODO, this.todos.filter(todo => todo.done).length)
+    this.eventService.emit(QueueNames.REMOVE_TODO, this.todos.filter(todo => !todo.done).length)
   }
 }
