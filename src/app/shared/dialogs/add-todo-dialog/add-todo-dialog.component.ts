@@ -13,8 +13,8 @@ import { MatDialogRef } from '@angular/material'
      </mat-form-field>
     </div>
     <div mat-dialog-actions>
-        <button mat-raised-button (click)="cancel()">Cancel</button>
-        <button mat-raised-button [disabled]="!message" [mat-dialog-close]="message" >Add</button>
+        <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!message" [mat-dialog-close]="message" >Add</button>
     </div>
     
   `,

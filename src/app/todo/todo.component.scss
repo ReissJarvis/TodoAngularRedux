@@ -8,3 +8,16 @@
   box-sizing: border-box;
   margin: 20px
 }
+
+.completed {
+  background-color: green;
+  transition: background-color 0.5s ease;
+  & mat-icon {
+    color:white;
+    transition: color 0.5s ease;
+  }
+  & h4 {
+    color:white;
+    transition: color 0.5s ease;
+  }
+}

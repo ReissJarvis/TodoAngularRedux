@@ -8,7 +8,7 @@ import {
   MatCardModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule, MatCheckboxModule
 } from '@angular/material'
 
 export const materialModules = [
@@ -20,7 +20,8 @@ export const materialModules = [
   MatCardModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatCheckboxModule
 ]
 
 @NgModule({
