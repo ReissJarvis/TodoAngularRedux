@@ -38,7 +38,6 @@ export class TodoComponent implements OnInit {
     } else {
       this.eventService.emit(QueueNames.UNCHECK_TODO)
     }
-    console.log(value)
   }
 
   getCompletedTodos() {

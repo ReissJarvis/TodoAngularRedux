@@ -8,7 +8,9 @@ import { QueueNames } from './event-queues.constants'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   totalNumberOfTodos = 0
+
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
@@ -25,7 +27,7 @@ export class AppComponent implements OnInit {
 
     this.eventService.listen(QueueNames.REMOVE_TODO)
       .subscribe(value => {
-        this.totalNumberOfTodos = value.payload
+        this.totalNumberOfTodos = value.payload as number
       })
 
     this.eventService.listen(QueueNames.UNCHECK_TODO)
