@@ -1,11 +1,6 @@
-import { TodoActions, TodoActionTypes } from './todo.actions'
-import { State } from '@ngrx/store'
+import { Todo } from '@shared/models'
 
-export interface Todo {
-  id: number,
-  message: string,
-  done?: boolean
-}
+import { TodoActions, TodoActionTypes } from './todo.actions'
 
 export function TodoReducer(state: Todo[] = [], action: TodoActions): Todo[] {
   switch(action.type) {
@@ -25,22 +20,25 @@ export function TodoReducer(state: Todo[] = [], action: TodoActions): Todo[] {
     }
 
     case TodoActionTypes.CHECK_TODO: {
-      return [...state.map(todo => {
-        if(todo.id === action.id) {
-          return { ...todo, done: true}
+      const itemIndex = state.findIndex(todo => todo.id === action.id)
+      return [ ...state.map((todo, index) => {
+        if(todo.id !== action.id)
+        {
+          return todo
         }
 
-        return todo
-      })]
+        return { ...todo, ...{ done: true } }
+      }]
     }
 
     case TodoActionTypes.UNCHECK_TODO: {
-      return [...state.map(todo => {
-        if(todo.id === action.id) {
-          return { ...todo, done: false }
+      return [...state.map((todo, index) => {
+        if(todo.id !== action.id)
+        {
+          return todo
         }
 
-        return todo
+        return { ...todo, ...{ done: false } }
       })]
     }
 
