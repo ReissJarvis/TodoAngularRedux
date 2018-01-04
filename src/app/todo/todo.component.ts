@@ -1,21 +1,32 @@
-import { Component } from '@angular/core';
-import { AddTodoDialogComponent } from '../shared/dialogs/add-todo-dialog/add-todo-dialog.component'
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material'
-import { EventService } from '../event.service'
-import { QueueNames } from '../event-queues.constants'
+import { Store } from '@ngrx/store'
+
+import { Todo } from '@shared/models'
+import { AddTodoDialogComponent } from '@shared/dialogs'
+
+import * as TodoActions from './reducers/todo.actions'
+
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
 
-  todos: { id: number, message: string, done?: boolean }[] = []
+  todos: Todo[] = []
 
-  constructor(public dialog: MatDialog, private eventService: EventService) { }
+  constructor(public dialog: MatDialog, private store: Store<{todo:any[]}>) { }
 
-  openAddTodo(){
+  ngOnInit() {
+    this.store.select(state => state.todo)
+      .subscribe(todos => {
+        this.todos = todos
+      })
+  }
+
+  openAddTodo() {
     let dialogRef = this.dialog.open(AddTodoDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
@@ -23,16 +34,15 @@ export class TodoComponent {
         return
       }
 
-      this.todos.push({id: this.todos.length + 1, message: result})
-      this.eventService.emit(QueueNames.NEW_TODO)
+      this.store.dispatch(new TodoActions.NewTodo(result))
     });
   }
 
-  checkTodo(value) {
+  checkTodo(value, id) {
     if(value.checked) {
-      this.eventService.emit(QueueNames.CHECK_TODO)
+      this.store.dispatch(new TodoActions.CheckTodo(id))
     } else {
-      this.eventService.emit(QueueNames.UNCHECK_TODO)
+      this.store.dispatch(new TodoActions.UncheckTodo(id))
     }
   }
 
@@ -40,8 +50,7 @@ export class TodoComponent {
     return this.todos.filter(todo => todo.done).length
   }
 
-  deleteTodo(index){
-    this.todos.splice(index, 1)
-    this.eventService.emit(QueueNames.REMOVE_TODO, this.todos.filter(todo => !todo.done).length)
+  deleteTodo(id) {
+    this.store.dispatch(new TodoActions.RemoveTodo(id))
   }
 }

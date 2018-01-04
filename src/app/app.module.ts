@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store'
+
+import { MaterialModule } from '@shared/material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './shared/material.module';
 import { InfoComponent } from './info/info.component'
-import { EventService } from './event.service'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+
 
 
 @NgModule({
@@ -20,8 +22,12 @@ import { EventService } from './event.service'
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge:25
+    })
   ],
-  providers: [EventService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

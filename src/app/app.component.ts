@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from './event.service'
-import { QueueNames } from './event-queues.constants'
+import { Store } from '@ngrx/store'
+import { AppState } from '@shared/models/store.model'
 
 @Component({
   selector: 'app-root',
@@ -11,28 +11,15 @@ export class AppComponent implements OnInit {
 
   totalNumberOfTodos = 0
 
-  constructor(private eventService: EventService) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-
-    this.eventService.listen(QueueNames.NEW_TODO)
-      .subscribe(() => {
-        this.totalNumberOfTodos += 1
-      })
-
-    this.eventService.listen(QueueNames.CHECK_TODO)
-      .subscribe(() => {
-        this.totalNumberOfTodos -= 1
-      })
-
-    this.eventService.listen(QueueNames.REMOVE_TODO)
-      .subscribe(value => {
-        this.totalNumberOfTodos = value.payload as number
-      })
-
-    this.eventService.listen(QueueNames.UNCHECK_TODO)
-      .subscribe(() => {
-        this.totalNumberOfTodos += 1
+    this.store
+      .select(state => state.todo)
+      .subscribe(todos => {
+          if(todos) {
+            this.totalNumberOfTodos = todos.filter(todo => !todo.done).length
+          }
       })
   }
 }
