@@ -9,7 +9,7 @@
       <a mat-list-item routerLink="/todo">
         <mat-icon>done</mat-icon>
         Todo List
-        <div *ngIf="totalNumberOfTodos > 0" class="total-todos">{{totalNumberOfTodos}}</div>
+        <div *ngIf="uncheckedTodos > 0" class="total-todos">{{uncheckedTodos}}</div>
       </a>
     </mat-nav-list>
   </mat-sidenav>

@@ -9,7 +9,7 @@ import { AppState } from '@shared/models/store.model'
 })
 export class AppComponent implements OnInit {
 
-  totalNumberOfTodos = 0
+  uncheckedTodos = 0
 
   constructor(private store: Store<AppState>) { }
 
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
       .select(state => state.todo)
       .subscribe(todos => {
           if(todos) {
-            this.totalNumberOfTodos = todos.filter(todo => !todo.done).length
+            this.uncheckedTodos = todos.filter(todo => !todo.done).length
           }
       })
   }
