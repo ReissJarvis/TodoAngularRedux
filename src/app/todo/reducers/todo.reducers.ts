@@ -28,7 +28,7 @@ export function TodoReducer(state: Todo[] = [], action: TodoActions): Todo[] {
         }
 
         return { ...todo, ...{ done: true } }
-      }]
+      }) ]
     }
 
     case TodoActionTypes.UNCHECK_TODO: {
